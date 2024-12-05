@@ -5,6 +5,8 @@ from shiny import reactive
 from shiny.express import input, render, ui
 import palmerpenguins
 import shinyswatch
+from shinywidgets import render_plotly
+
 
 df = palmerpenguins.load_penguins()
 
@@ -18,6 +20,10 @@ with ui.sidebar(title="Filter controls"):
         "Species",
         ["Adelie", "Gentoo", "Chinstrap"],
         selected="Adelie"
+    )
+    ui.input_selectize(
+    "length", "Select variable",
+    choices=["bill_length_mm", "bill_depth_mm"]
     )
     ui.hr()
     ui.h6("Links")
@@ -76,14 +82,12 @@ with ui.layout_columns():
     with ui.card(full_screen=True):
         ui.card_header("Bill length and depth",style="color:#FF8C00; font-family:'Roboto',sans-serif;")
 
-        @render.plot
-        def length_depth():
-            return sns.scatterplot(
-                data=filtered_df(),
-                x="bill_length_mm",
-                y="bill_depth_mm",
-                hue="species",
-            )
+        @render_plotly
+        def hist():
+            import plotly.express as px
+            from palmerpenguins import load_penguins
+            df = load_penguins()
+            return px.histogram(df, x=input.length())
 
     with ui.card(full_screen=True):
         ui.card_header("Penguin Data",style="color:#FF8C00; font-family:'Roboto',sans-serif;")
