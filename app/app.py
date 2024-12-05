@@ -16,7 +16,7 @@ with ui.sidebar(title="Filter controls"):
         "species",
         "Species",
         ["Adelie", "Gentoo", "Chinstrap"],
-        selected=["Adelie", "Gentoo", "Chinstrap"],
+        selected="Adelie"
     )
     ui.hr()
     ui.h6("Links")
