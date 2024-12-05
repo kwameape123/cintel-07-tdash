@@ -6,3 +6,4 @@ pandas
 palmerpenguins
 shinyswatch
 shinywidgets
+plotly
