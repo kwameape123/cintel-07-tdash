@@ -1,5 +1,5 @@
-"""This web app is reactive analytics app that allow users to visualize and analyze data
-base on their inputs and selections"""
+# This web app is reactive analytics app that allow users to visualize and analyze data
+# base on their inputs and selections
 # Author: Arnold Atchoe
 # Date:12/5/2024
 
@@ -12,6 +12,7 @@ from shiny.express import input, render, ui
 import palmerpenguins
 import shinyswatch
 from shinywidgets import render_plotly
+import plotly.express
 
 # Assign the palmer penguins dataframe to the variable "df"
 df = palmerpenguins.load_penguins()
