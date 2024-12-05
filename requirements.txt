@@ -4,3 +4,5 @@ shinylive
 seaborn
 pandas
 palmerpenguins
+shinyswatch
+shinywidgets
