@@ -3,11 +3,12 @@ from faicons import icon_svg
 
 from shiny import reactive
 from shiny.express import input, render, ui
-import palmerpenguins 
+import palmerpenguins
+import shinyswatch
 
 df = palmerpenguins.load_penguins()
 
-ui.page_opts(title="Penguins dashboard", fillable=True)
+ui.page_opts(title="Penguins dashboard", fillable=True,theme=shinyswatch.theme.darkly)
 
 
 with ui.sidebar(title="Filter controls"):
@@ -49,21 +50,21 @@ with ui.sidebar(title="Filter controls"):
 
 
 with ui.layout_column_wrap(fill=False):
-    with ui.value_box(showcase=icon_svg("earlybirds")):
+    with ui.value_box(showcase=icon_svg("earlybirds"),style="color:#FF8C00; font-family:'Roboto',sans-serif;"):
         "Number of penguins"
 
         @render.text
         def count():
             return filtered_df().shape[0]
 
-    with ui.value_box(showcase=icon_svg("ruler-horizontal")):
+    with ui.value_box(showcase=icon_svg("ruler-horizontal"),style="color:#FF8C00; font-family:'Roboto',sans-serif;"):
         "Average bill length"
 
         @render.text
         def bill_length():
             return f"{filtered_df()['bill_length_mm'].mean():.1f} mm"
 
-    with ui.value_box(showcase=icon_svg("ruler-vertical")):
+    with ui.value_box(showcase=icon_svg("ruler-vertical"),style="color:#FF8C00; font-family:'Roboto',sans-serif;"):
         "Average bill depth"
 
         @render.text
@@ -73,7 +74,7 @@ with ui.layout_column_wrap(fill=False):
 
 with ui.layout_columns():
     with ui.card(full_screen=True):
-        ui.card_header("Bill length and depth")
+        ui.card_header("Bill length and depth",style="color:#FF8C00; font-family:'Roboto',sans-serif;")
 
         @render.plot
         def length_depth():
@@ -85,7 +86,7 @@ with ui.layout_columns():
             )
 
     with ui.card(full_screen=True):
-        ui.card_header("Penguin Data")
+        ui.card_header("Penguin Data",style="color:#FF8C00; font-family:'Roboto',sans-serif;")
 
         @render.data_frame
         def summary_statistics():
